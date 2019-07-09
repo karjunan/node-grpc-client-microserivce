@@ -1,12 +1,16 @@
 const express = require('express');
+const employeeData = require('../client'); 
 
 function routes() {
     const employeeRouter = express.Router();
-    employeeRouter.route('/detail')
+    employeeRouter.route('/all')
     .get((req,res) => {
-     
-      var text = 'Hay buddy';
-       res.send(text);
+       res.json(employeeData.employeeData);
+    });
+
+    employeeRouter.route('/count')
+    .get((req,res) => {
+       res.json(employeeData.employeeData.length);
     });
 
     return employeeRouter;
