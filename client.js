@@ -17,20 +17,20 @@ const PORT = 3000;
 
 
 // port configuration for GRPC connectivity
-const GRPC_PORT = 43016
-// const GRPC_PORT = 9000;
+// const GRPC_PORT = 43016
+const GRPC_PORT = 8000;
 
 //proto file path 
 const serviceDef = grpc.load(PROTO_PATH);
 
 const app = express();
 const creds = grpc.credentials.createInsecure()
-// const client = new serviceDef.EmployeeConsumerService(`localhost:${GRPC_PORT}`, creds);
+const client = new serviceDef.KafkaConsumerService(`localhost:${GRPC_PORT}`, creds);
 // const client = new serviceDef.EmployeeConsumerService(`10.0.102.166:${GRPC_PORT}`, creds);
 // const client = new serviceDef.EmployeeConsumerService(`172.24.235.1:${GRPC_PORT}`, creds);
 const GRPC_HOST = process.env.GRPC_SERVER_IP;
 console.log("GRPC- HOST " + GRPC_HOST);
-const client = new serviceDef.EmployeeConsumerService(`${GRPC_HOST}`, creds);
+// const client = new serviceDef.EmployeeConsumerService(`${GRPC_HOST}`, creds);
 
 
 app.use('/api',employeeRouter);
