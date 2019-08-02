@@ -48,7 +48,12 @@ app.listen(PORT,() => {
 // const option = parseInt(process.argv[2],10);
 var employeeData = new Array();
 function getAll(client) {
-    const call = client.getAll({});
+    var val = {};
+    val['topic'] = ["t5"];
+    val['header'] = {'eventId':"Created"};
+    
+    
+    const call = client.getAll(val);
 
     call.on('data', function (data) {
         employeeData.push(data);
